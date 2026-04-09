@@ -6,7 +6,7 @@ This project satisfies Part-I requirements using:
 - `docker-compose.yml` for app + database
 - Persistent MongoDB volume: `mongo_data`
 
-## 1) Run locally
+## 1) Run locally .
 
 From project root:
 
