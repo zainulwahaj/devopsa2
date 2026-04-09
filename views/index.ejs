@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps Notes App</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>DevOps Notes App</h1>
+      <p class="subtitle">Simple Node.js + MongoDB web app for assignment use</p>
+
+      <% if (error) { %>
+      <p class="error"><%= error %></p>
+      <% } %>
+
+      <section class="card">
+        <h2>Add Note</h2>
+        <form method="POST" action="/notes" class="form">
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" required />
+
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="4" required></textarea>
+
+          <button type="submit">Save Note</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Saved Notes</h2>
+        <% if (!notes.length) { %>
+        <p>No notes yet. Add your first note.</p>
+        <% } %> <% notes.forEach((note) => { %>
+        <article class="note">
+          <h3><%= note.title %></h3>
+          <p><%= note.content %></p>
+          <small>Created: <%= new Date(note.createdAt).toLocaleString() %></small>
+          <form method="POST" action="/notes/<%= note._id %>/delete">
+            <button class="danger" type="submit">Delete</button>
+          </form>
+        </article>
+        <% }) %>
+      </section>
+    </main>
+  </body>
+</html>
