@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    COMPOSE_FILE = "docker-compose.part2.yml"
+    COMPOSE_FILE = "docker-compose.yml"
   }
 
   stages {
@@ -18,7 +18,7 @@ pipeline {
       }
     }
 
-    stage('Deploy Part-II Stack') {
+    stage('Deploy Stack') {
       steps {
         sh 'docker compose -f $COMPOSE_FILE up -d --force-recreate'
       }
@@ -33,7 +33,7 @@ pipeline {
 
   post {
     success {
-      echo 'Part-II pipeline completed: app should be available on port 4000.'
+      echo 'Pipeline completed: app should be available on port 4000.'
     }
     failure {
       echo 'Pipeline failed. Check Docker/Jenkins logs.'
